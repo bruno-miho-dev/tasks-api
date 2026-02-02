@@ -1,0 +1,40 @@
+### Health Check
+GET http://localhost:3333/health
+
+### Criar Tarefa
+POST http://localhost:3333/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Estudar TypeScript",
+  "description": "Revisar conceitos avançados de TypeScript e Generics"
+}
+
+### Listar Tarefas (primeira página)
+GET http://localhost:3333/api/tasks?page=1&limit=10
+
+### Listar Tarefas Pendentes
+GET http://localhost:3333/api/tasks?completed=false
+
+### Listar Tarefas Concluídas
+GET http://localhost:3333/api/tasks?completed=true
+
+### Buscar Tarefas
+GET http://localhost:3333/api/tasks?search=TypeScript
+
+### Buscar Tarefa por ID
+GET http://localhost:3333/api/tasks/550e8400-e29b-41d4-a716-446655440000
+
+### Atualizar Tarefa
+PUT http://localhost:3333/api/tasks/550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
+
+{
+  "title": "Estudar TypeScript - Atualizado"
+}
+
+### Marcar como Concluída
+PATCH http://localhost:3333/api/tasks/550e8400-e29b-41d4-a716-446655440000/complete
+
+### Deletar Tarefa
+DELETE http://localhost:3333/api/tasks/550e8400-e29b-41d4-a716-446655440000
