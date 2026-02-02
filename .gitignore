@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+
+# Banco de dados local
+db.json
+
+# Arquivos de ambiente
+
+# Logs
+
+# Sistema operacional
+
+# IDEs e Editores
+
+# Arquivos temporários
+
+# Coverage e testes
+
+# Build
+
+# Arquivos CSV temporários (mantenha apenas o exemplo)
+# tasks.csv (descomente se quiser ignorar)
