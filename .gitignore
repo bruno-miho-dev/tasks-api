@@ -27,3 +27,5 @@ dist/
 
 # Arquivos CSV temporários (mantenha apenas o exemplo)
 # tasks.csv (descomente se quiser ignorar)
+
+/src/generated/prisma
