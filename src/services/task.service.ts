@@ -1,5 +1,11 @@
 import { TaskRepository } from '@/repositories/task.repository'
-import { CreateTaskDTO, UpdateTaskDTO, TaskFilters } from '@/types/task.types'
+import {
+  CreateTaskDTO,
+  UpdateTaskDTO,
+  TaskFilters,
+  PaginatedResponse,
+  Task,
+} from '@/types/task.types'
 import { AppError } from '@/middlewares/error-handler'
 
 export class TaskService {
@@ -9,8 +15,27 @@ export class TaskService {
     return await this.taskRepository.create(data)
   }
 
-  async listTasks(filters?: TaskFilters) {
-    return await this.taskRepository.findAll(filters)
+  async listTasks(filters?: TaskFilters): Promise<PaginatedResponse<Task>> {
+    const page = filters?.page || 1
+    const limit = filters?.limit || 10
+
+    const [tasks, total] = await Promise.all([
+      this.taskRepository.findAll(filters),
+      this.taskRepository.count({
+        search: filters?.search,
+        completed: filters?.completed,
+      }),
+    ])
+
+    return {
+      data: tasks,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+    }
   }
 
   async getTaskById(id: string) {
