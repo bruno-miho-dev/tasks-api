@@ -6,14 +6,6 @@ export class TaskService {
   constructor(private taskRepository: TaskRepository) {}
 
   async createTask(data: CreateTaskDTO) {
-    if (!data.title?.trim()) {
-      throw new AppError('Title is required', 400)
-    }
-
-    if (!data.description?.trim()) {
-      throw new AppError('Description is required', 400)
-    }
-
     return await this.taskRepository.create(data)
   }
 
@@ -32,12 +24,7 @@ export class TaskService {
   }
 
   async updateTask(id: string, data: UpdateTaskDTO) {
-    if (!data.title?.trim() && !data.description?.trim()) {
-      throw new AppError('Title or description is required', 400)
-    }
-
     await this.getTaskById(id)
-
     return await this.taskRepository.update(id, data)
   }
 
